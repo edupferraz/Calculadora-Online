@@ -1,5 +1,10 @@
 import time as t
 
+from tratativa_erros import trativa_erros
+
+from funcao_1_grau import funcao_1_grau
+from velocidade_media import velocidade_media
+
 print('''Calc! - Calculadora Online para todas as coisa.''')
 
 print('''
@@ -17,99 +22,42 @@ escolha = input('Escolha a equação desejada: ')
 
 # Função com papel de loading
 def carregando():
-    print('Pro')
-    t.sleep(0.5)
-    print('ce')
-    t.sleep(0.5)
-    print('ssan')
-    t.sleep(0.5)
-    print('do !!!!!')
-    t.sleep(0.5)
+    print()
+    print('Carregando...')
     print()
 
-# Função responsável pela resolução da função do 1º grau
-def funcao_1_grau():
-
-    # Se a for a variável
-    if a == '' and b != '' and x != '':
-        print(f'x.{x} + {b} = 0')
-        print(f'x.{x} =  -{b}')
-        print(f'x = {int(b) / int(x)}')
-
-    # Se b for a variável
-    elif a != '' and b == '' and x != '':
-        print(f'{a}.{x} + b = 0')
-        print(f'{a}.{x} = - b')
-        print(f'{a}.{x} = {- (int(a) * int(x))}')
-
-    # Se x for a variável
-    elif a != ''  and b != '' and x == '':
-        print(f'{a}.x + {b} = 0')
-        print(f'{a}.x =  -{b}')
-        print(f'x = {int(b) / int(a)}')
-
-    # Se todos os campos forem preenchidos
-    elif a != '' and b != '' and x != '':
-        print(f'{a}.{x} + {b} ')
-        print(f'{int(a) * int(x)} + {b}')
-        print(f'{int(a) * int(x) + int(b)}')
-    else:
-        print('Digite parâmetros válidos')
-
-# Função responsável pela resolução da velocidade média
-def velocidade_media():
-
-    # Se a for a variável
-    if v == '' and s != ''  and t != '':
-        print(f'v = {s} / {t}')
-        print(f'v = {int(s) / int(t) }')
-
-    # Se b for a variável
-    elif v != '' and s == '' and t != '':
-        print(f'{v} = s / {t}')
-        print(f'{v} . {t} = s')
-        print(f'{int(v) * int(t)} = s')
-
-    # Se x for a variável
-    elif v != '' and s != '' and t == '':
-        print(f'{v} = {s} / t')
-        print(f'{v} . {s} = t')
-        print(f'{int(v) * int(s)} = t')
-
-    # Se todos os campos forem preenchidos
-    elif v != '' and s != '' and t != '':
-        print(f'{v} = {s} / {t}')
-        print(f'{v} = {int(s) / int(t) }')
-    else:
-        print('Digite parâmetros válidos')
-
 if escolha == '1':
-    print('Exemplo: ax + b = 0')
-
+    print('''
+    Exemplo: ax + b = 0
+    Obs: Apenas um valor em branco
+        ''')
     a = input('Digite o a: ')
     b = input('Digite o b: ')
     x = input('Digite o x: ')
 
-    print()
-    carregando()
+    validacao = trativa_erros(a, b, x)
 
-    funcao_1_grau()
+    if not validacao:
+        carregando()
+        funcao_1_grau(a, b, x)
 
 elif escolha == '4':
-
-    print('Exemplo: v = s / t')
-    print('Obs: Apenas um valor em branco')
-    print()
+    print('''
+    Exemplo: v = s / t
+    Obs: Apenas um valor em bran4co
+            ''')
 
     v = input('Digite o v: ')
     s = input('Digite o s: ')
     t = input('Digite o t: ')
 
-    print()
-    # carregando()
-    velocidade_media()
+    validacao = trativa_erros(v, s, t)
+
+    if not validacao:
+        carregando()
+        velocidade_media(v, s, t)
+
 else:
-    print()
     print('Por favor, escolha uma opção válida!')
 
 
